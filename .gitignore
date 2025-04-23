@@ -1,0 +1,6 @@
+__pycache__
+.idx
+.venv
+.vscode
+myenv
+git@github.com:bimission/adktraining.git
