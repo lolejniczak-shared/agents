@@ -1,2 +1,6 @@
 google-adk
 python-dotenv
+toolbox-langchain 
+langchain
+google-genai
+a2a-sdk

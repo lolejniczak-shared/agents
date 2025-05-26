@@ -4,3 +4,5 @@ __pycache__
 .vscode
 myenv
 git@github.com:bimission/adktraining.git
+mcp-toolbox
+adk06/.env
