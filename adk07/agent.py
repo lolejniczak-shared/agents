@@ -11,6 +11,7 @@ from google.adk.tools import FunctionTool
 
 ## Exper agent (Artist) as tool: Genrate images ...... 
 ## generate image of a cat sitting on a coach in front of tv eating popcorn
+
 load_dotenv()
 
 MODEL = "gemini-2.0-flash-001"

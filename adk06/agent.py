@@ -30,6 +30,8 @@ auth_scheme = OAuth2(
             authorizationUrl="https://accounts.google.com/o/oauth2/auth",
             tokenUrl="https://oauth2.googleapis.com/token",
             scopes={
+                "openid": "openid",
+                "https://www.googleapis.com/auth/cloud-platform": "cloud platform",
                 "https://www.googleapis.com/auth/userinfo.email": "user email",
                 "https://www.googleapis.com/auth/userinfo.profile": "user profile"
             },
@@ -54,13 +56,11 @@ toolset = OpenAPIToolset(
     auth_scheme=auth_scheme
 )
 
-for tool in toolset.get_tools():
-    print(tool) 
 
 root_agent = Agent(
         model=MODEL,
         name=AGENT_APP_NAME,
         description="You are HR manager",
-        instruction=instruction_prompt,
+        instruction="You are helpful assistant answering questions about users. Whenever asked about 'me', 'my' use People API ",
         tools=[toolset.get_tool("people_get")]
 )
