@@ -5,5 +5,6 @@ __pycache__
 myenv
 git@github.com:bimission/adktraining.git
 mcp-toolbox
-adk06/.env
-adk06a/.env
+adk06-oauth-api/.env
+adk06a-oauth-integration-connectors/.env*
+*/*.json
