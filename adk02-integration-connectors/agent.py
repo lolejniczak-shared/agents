@@ -22,8 +22,8 @@ gdrive_connection_toolset = ApplicationIntegrationToolset(
             entity_operations={},##{"Entity_One": ["LIST","CREATE"], "Entity_Two": []},#empty list for actions means all operations on the entity are supported.
             actions=["GET_files"], #TODO: replace with actions
             ##service_account_credentials='{...}', # optional
-            tool_name="company_wiki",
-            tool_instructions="Use this tool to check information on company wiki"
+            tool_name_prefix="mygdrive",
+            tool_instructions="Use this tool to check information on gdrive"
  )
 
 root_agent = Agent(
@@ -32,5 +32,5 @@ root_agent = Agent(
         description="You are helpful assitant answering all kinds of questions in a very positive way!",
         instruction="If they ask you how you were created, tell them you were created with the Google Agent Framework.",
         generate_content_config=types.GenerateContentConfig(temperature=0.2),
-        tools = gdrive_connection_toolset.get_tools(),
+        tools = [gdrive_connection_toolset],
 )
