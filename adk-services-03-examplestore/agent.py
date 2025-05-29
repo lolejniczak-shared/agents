@@ -1,45 +1,55 @@
-import os
-from dotenv import load_dotenv
 from google.adk.agents import Agent
+from google.adk.artifacts import InMemoryArtifactService
+from google.adk.runners import Runner
+from google.adk.sessions import InMemorySessionService
 from google.genai import types
-from google.adk.agents import LlmAgent
+from dotenv import load_dotenv
+import requests
+import os
 
-
-#### Router with sub agents - experts
+from vertexai.preview import example_stores
+from google.adk.examples import VertexAiExampleStore
+from google.adk.tools import ExampleTool
 
 load_dotenv()
 
 MODEL = "gemini-2.0-flash-001"
-AGENT_APP_NAME = 'employee_assistant'
+AGENT_APP_NAME = 'basic_agent'
+EXAMPLE_STORE= os.getenv('EXAMPLE_STORE')
 
-expert_marketing = Agent(
-        model=MODEL,
-        name=AGENT_APP_NAME,
-        description="Agent to answer questions about marketing strategies",
-        instruction="You are marketing specialist",
-)
+def get_exchange_rate(
+        currency_from: str = "USD",
+        currency_to: str = "EUR",
+        currency_date: str = "latest",
+    ):
+            """Retrieves the exchange rate between two currencies on a specified date.
 
-expert_cloud = Agent(
-        model=MODEL,
-        name=AGENT_APP_NAME,
-        description="Agent to answer questions about google cloud",
-        instruction="You are google cloud specialist",
-)
+            Uses the Frankfurter API (https://api.frankfurter.app/) to obtain exchange rate data.
 
-expert_legal = Agent(
-        model=MODEL,
-        name=AGENT_APP_NAME,
-        description="Agent to answer questions about legal",
-        instruction="You are legal specialist",
-)
+            Args:
+                currency_from: The base currency (3-letter currency code). Defaults to "USD" (US Dollar).
+                currency_to: The target currency (3-letter currency code). Defaults to "EUR" (Euro).
+                currency_date: The date for which to retrieve the exchange rate. Defaults to "latest" for the most recent exchange rate data. Can be specified in YYYY-MM-DD format for historical rates.
 
+            Returns:
+                dict: A dictionary containing the exchange rate information.
+                    Example: {"amount": 1.0, "base": "USD", "date": "2023-11-24", "rates": {"EUR": 0.95534}}
+            """
 
-root_agent = LlmAgent(
-        model=MODEL,
-        name=AGENT_APP_NAME,
-        description="You are assistant routing questions to experts",
-        instruction="You are helpful assistant that works with experts to answer user questions.",
-       sub_agents = [expert_marketing, 
-        expert_cloud, 
-        expert_legal]
-)
+            response = requests.get(
+                f"https://api.frankfurter.app/{currency_date}",
+                params={"from": currency_from, "to": currency_to},
+            )
+            return response.json()
+
+example_store = VertexAiExampleStore(EXAMPLE_STORE)
+examples_tool = ExampleTool(example_store)
+
+root_agent = Agent(
+        model="gemini-1.5-flash-002",
+        name='user_assistant',
+        instruction="""
+        You are helpful assistant. You provide answers on questions about currency exchange""",
+        tools=[get_exchange_rate, examples_tool],
+        examples = example_store #####!!!!!!! 
+    )
