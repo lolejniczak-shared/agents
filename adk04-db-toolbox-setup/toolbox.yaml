@@ -1,0 +1,31 @@
+sources:
+   alloydb-toys:
+     kind: "alloydb-postgres"
+     project: "genai-app-builder"
+     region: "us-central1"
+     cluster: "vector-cluster"
+     instance: "shopping-cluster-primary"
+     database: "postgres"
+tools:
+ search-hotels-by-name:
+   kind: postgres-sql
+   source: alloydb-toys
+   description: Search for hotels based on name.
+   parameters:
+     - name: name
+       type: string
+       description: The name of the hotel.
+   statement: SELECT * FROM hotels WHERE name ILIKE '%' || $1 || '%';
+ search-hotels-by-location:
+   kind: postgres-sql
+   source: alloydb-toys
+   description: Search for hotels based on location.
+   parameters:
+     - name: location
+       type: string
+       description: The location of the hotel.
+   statement: SELECT * FROM hotels WHERE location ILIKE '%' || $1 || '%';
+toolsets:
+   my_first_toolset:
+     - search-hotels-by-name
+     - search-hotels-by-location

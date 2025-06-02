@@ -6,8 +6,6 @@ from google.adk.tools.application_integration_tool.application_integration_tools
 
 load_dotenv()
 
-
-
 MODEL = "gemini-2.0-flash-001"
 AGENT_APP_NAME = 'personalagent'
 

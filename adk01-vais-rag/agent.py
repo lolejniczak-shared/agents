@@ -19,10 +19,10 @@ instruction_prompt = """
         information is not available, clearly state that you do not have
         enough information.
         """
-
-SEARCH_ENGINE_ID="projects/genai-app-builder/locations/global/collections/default_collection/engines/pko-public-knowledge-base_1741175823086"
 MODEL = "gemini-2.0-flash-001"
 AGENT_APP_NAME = 'efinancialexpert'
+
+SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 
 privatecorpus = VertexAiSearchTool(
     search_engine_id = SEARCH_ENGINE_ID,

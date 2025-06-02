@@ -2,7 +2,8 @@ import os
 from dotenv import load_dotenv
 from google.adk.agents import Agent
 from google.genai import types
-from google.auth import default, transport
+from google.auth import default
+from google.auth.transport.requests import Request
 import requests
 
 load_dotenv()
@@ -14,7 +15,7 @@ AGENT_APP_NAME = 'enterpriseagent'
 class DatastoreService:
     def __init__(self):
         creds, project_id = default()
-        auth_req = transport.requests.Request()  # Use google.auth here
+        auth_req = Request()  # Use google.auth here
         creds.refresh(auth_req)
         access_token = creds.token
         self.access_token = access_token
@@ -37,7 +38,7 @@ class DatastoreService:
                     "ignoreAdversarialQuery": True,
                     "includeCitations": False,
                     "summaryResultCount": 10,   ## how many results should be taken into account when generating summarization
-                    "modelSpec": {"version": "gemini-1.5-flash-001/answer_gen/v1"},
+                    ##"modelSpec": {"version": "gemini-1.5-flash-001/answer_gen/v1"},
                     "languageCode": "pl"
                 }
             }
@@ -70,21 +71,10 @@ def search_catalog(query: str):
 
 
 instruction_prompt = """
-Use available tools to answer use rquestion. As final response generate a Markdown response that includes summaryText and markdown table.
-The table should display information about a product.
-
-The product details are:
-Description: "Kapelusz Fedora to klasyczny męski kapelusz wykonany z miękkiego filcu wełnianego. Ma ciemnoszary kolor, szeroki rond i opaskę z wstążki grosgrain. Kapelusz ma klasyczny kształt fedory i jest wykończony skórzanym potnikiem. Jest idealny dla mężczyzn, którzy szukają klasycznego i stylowego nakrycia głowy. Kapelusz Fedora jest dostępny w różnych kolorach, dzięki czemu możesz wybrać ten, który najlepiej pasuje do Twojego stylu."
-
-Use the following example data for the table row:
-- Image: https://storage.googleapis.com/lolejniczak-retail-assiatnt-images/b5050f44-702d-11ee-b063-b29c4ad31d45.png (display as an image with width="100")
-- Price: 415
-- Currency: PLN
-- Title: Kapelusz Fedora (display this in bold)
-
-The HTML table should have the following headers: "Image", "Price", "Currency", "Title".
-
-Ensure the final output is valid Markdown that embeds this HTML table directly. The table should be renderable by a standard Markdown WebUI control that supports embedded HTML.
+Use available tools to answer user question. 
+The response should include markdown table with columns image, price, currency, title.
+Render URL as image. 
+Ensure the final output is valid Markdown.
 """
 
 root_agent = Agent(

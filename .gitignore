@@ -7,4 +7,7 @@ git@github.com:bimission/adktraining.git
 mcp-toolbox
 adk06-oauth-api/.env
 adk06a-oauth-integration-connectors/.env*
+adk06b-oauth-demo-allegro/.env*
+adk06b-oauth-demo-allegro/.schemas.py
 */*.json
+result
