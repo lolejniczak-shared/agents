@@ -4,3 +4,5 @@ toolbox-core
 langchain
 google-genai
 a2a-sdk
+google-cloud-aiplatform[adk,agent_engines]==1.95
+locust

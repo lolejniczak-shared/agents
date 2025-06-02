@@ -1,0 +1,1 @@
+For ADK 1.1.1 make sure you have google-cloud-aiplatform==1.95.0

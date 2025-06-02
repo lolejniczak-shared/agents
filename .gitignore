@@ -9,5 +9,6 @@ adk06-oauth-api/.env
 adk06a-oauth-integration-connectors/.env*
 adk06b-oauth-demo-allegro/.env*
 adk06b-oauth-demo-allegro/.schemas.py
+adk-deployment-01-agentengine/*.html
 */*.json
 result
