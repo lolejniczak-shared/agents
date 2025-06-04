@@ -45,7 +45,6 @@ async def main():
         tools=[]
     )
 
-
     _state = {
         "user_info": {
         "name": "Lukasz Olejniczak",

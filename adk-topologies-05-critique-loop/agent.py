@@ -48,18 +48,18 @@ class CheckStatusAndEscalate(BaseAgent):
         print(f"--------------------")
         yield Event(author=self.name, actions=EventActions(escalate=should_stop))
 
-refinement_loop = LoopAgent(
+root_agent = LoopAgent(
     name="WritigRefinementLoop",
     max_iterations=5,
     sub_agents=[generator, reviewer, CheckStatusAndEscalate(name="StopChecker")],
 )
 
-writer_agent_as_tool = agent_tool.AgentTool(agent=refinement_loop) 
+##writer_agent_as_tool = agent_tool.AgentTool(agent=refinement_loop) 
 
-root_agent = LlmAgent(
-        model=MODEL,
-        name=AGENT_APP_NAME,
-        description="Writes an initial document and then iteratively refines it with critique using an exit tool.",
-        instruction="You are helpful assistant to writers",
-        sub_agents = [refinement_loop]
-)
+##root_agent = LlmAgent(
+##        model=MODEL,
+##        name=AGENT_APP_NAME,
+##        description="Writes an initial document and then iteratively refines it with critique using an exit tool.",
+##        instruction="You are helpful assistant to writers",
+##        sub_agents = [refinement_loop]
+##)

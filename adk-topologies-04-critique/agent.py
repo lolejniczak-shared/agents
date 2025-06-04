@@ -41,6 +41,7 @@ root_agent = LlmAgent(
         model=MODEL,
         name=AGENT_APP_NAME,
         description="Agent helping users create aricles",
-        instruction="You are helpful assistant to writers",
+        instruction="""You are helpful assistant to writers. Use available tools to generate article. 
+        Present both: draft_text and review_status with feedback""",
         tools = [writer_agent_as_tool]
 )

@@ -20,7 +20,7 @@ instruction_prompt = """
         enough information.
         """
 MODEL = "gemini-2.0-flash-001"
-AGENT_APP_NAME = 'efinancialexpert'
+AGENT_APP_NAME = 'legalexpert'
 
 SEARCH_ENGINE_ID = os.getenv('SEARCH_ENGINE_ID')
 
@@ -31,7 +31,7 @@ privatecorpus = VertexAiSearchTool(
 root_agent = Agent(
         model=MODEL,
         name=AGENT_APP_NAME,
-        description="You are financial expert explaining regulations to user in simple terms",
+        description="You are expert explaining regulations to user in simple terms",
         instruction=instruction_prompt,
         tools=[
             privatecorpus,
