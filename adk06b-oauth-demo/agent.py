@@ -36,7 +36,8 @@ auth_scheme = OAuth2(
                 "allegro:api:sale:offers:read": "Odczyt danych o ofertach",
                 "allegro:api:profile:read": "Odczyt danych osobowych z konta",
                 "allegro:api:bids": "Składanie ofert kupna w licytacjach",
-                "allegro:api:orders:read": "Odczyt informacji o zamówieniach"
+                "allegro:api:orders:read": "Odczyt informacji o zamówieniach",
+                "allegro:api:ratings": "Odczyt ocen od kupujących"
             },
         )
     )
@@ -68,5 +69,5 @@ root_agent = Agent(
         description="You are helpful assitant answering all kinds of questions in a very positive way!",
         instruction="You are Allegro Merchant assistant. Use available tools to answer user questions",
         generate_content_config=types.GenerateContentConfig(temperature=0.2),
-        tools = [toolset.get_tool("get_sale_products")],
+        tools = [toolset.get_tool("get_user_ratings_using_get")],
 )

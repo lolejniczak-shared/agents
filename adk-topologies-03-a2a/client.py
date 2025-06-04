@@ -12,7 +12,7 @@ from a2a.types import (
 async def main() -> None:
     async with httpx.AsyncClient() as httpx_client:
         client = await A2AClient.get_client_from_agent_card_url(
-            httpx_client, base_url = 'https://idx-helloworldadk-1745335161517.cluster-3gc7bglotjgwuxlqpiut7yyqt4.cloudworkstations.dev/_workstation', agent_card_path='/.well-known/agent.json'
+            httpx_client, base_url = 'http://localhost:9999'
         )
         send_message_payload: dict[str, Any] = {
             'message': {

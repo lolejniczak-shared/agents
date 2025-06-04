@@ -12,3 +12,4 @@ adk06b-oauth-demo-allegro/.schemas.py
 adk-deployment-01-agentengine/*.html
 */*.json
 result
+*/*.pyc
