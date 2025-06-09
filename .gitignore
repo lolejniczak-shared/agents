@@ -12,6 +12,7 @@ adk06b-oauth-demo-allegro/.env*
 adk06b-oauth-demo-allegro/.schemas.py
 adk06b-oauth-demo/schemas.py
 adk06b-oauth-demo/.env
+adk-service-04-memorybank/memory_bank_service.py
 adk-deployment-01-agentengine/*.html
 */*.json
 result
