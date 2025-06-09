@@ -12,7 +12,7 @@ PROJECT_ID = os.getenv('GOOGLE_CLOUD_PROJECT')
 REGION = os.getenv('GOOGLE_CLOUD_LOCATION')
 USE_VERTEXAI = os.getenv('GOOGLE_GENAI_USE_VERTEXAI')
 MEMOERY_GENERATION_MODEL_NAME="gemini-2.0-flash"
-EMBEDDING_MODEL_NAME="gemini-embedding-001"
+EMBEDDING_MODEL_NAME="text-multilingual-embedding-002"
 
 creds, project_id = default()
 auth_req = Request()  # Use google.auth here

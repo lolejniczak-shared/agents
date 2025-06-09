@@ -1,10 +1,10 @@
-google-adk==1.1.0
+google-adk==1.2.1
 python-dotenv
 toolbox-core 
 langchain
 google-genai
 a2a-sdk
-google-cloud-aiplatform[adk,agent_engines]==1.95
+google-cloud-aiplatform[adk,agent_engines]==1.96
 locust
 google-cloud-spanner==3.54.0
 google-adk[eval]

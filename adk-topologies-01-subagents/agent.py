@@ -39,7 +39,8 @@ root_agent = LlmAgent(
         name=AGENT_APP_NAME,
         description="You are assistant transfering questions to the best expert",
         instruction="Route user requests to best experts t oanswer questions",
-       sub_agents = [expert_marketing, 
-        expert_cloud, 
-        expert_legal]
+        sub_agents = [
+           expert_marketing, 
+           expert_cloud, 
+           expert_legal]
 )

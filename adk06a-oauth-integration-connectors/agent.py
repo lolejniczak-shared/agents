@@ -36,7 +36,7 @@ auth_scheme = OAuth2(
                 "openid": "openid",
                 "https://www.googleapis.com/auth/drive.readonly": "readonly",
                 "https://www.googleapis.com/auth/drive.metadata": "metadata readonly",
-                "https://www.googleapis.com/auth/cloud-platform": "cloud platform"
+                ##"https://www.googleapis.com/auth/cloud-platform": "cloud platform"
             },
         )
     )
