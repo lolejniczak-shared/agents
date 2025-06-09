@@ -17,3 +17,4 @@ adk-deployment-01-agentengine/*.html
 */*.json
 result
 */*.pyc
+*/*.html
