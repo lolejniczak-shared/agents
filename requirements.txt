@@ -9,3 +9,4 @@ locust
 google-cloud-spanner==3.54.0
 google-adk[eval]
 python-a2a
+gradio
