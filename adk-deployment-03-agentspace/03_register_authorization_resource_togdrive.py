@@ -10,7 +10,7 @@ load_dotenv()
 
 PROJECT_ID=os.getenv('GOOGLE_CLOUD_PROJECT_NUMBER')
 LOCATION = os.getenv('GOOGLE_CLOUD_LOCATION')
-AGENT_ENGINE_ID = os.getenv('REASONING_ENGINE_ID')
+AGENT_ENGINE_ID = os.getenv('REASONING_ENGINE_ID_4_AGENTOAUTH')
 GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID')
 GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET')
 AGENTSPACE_APP_ID = os.getenv('AGENTSPACE_APP_ID')
@@ -24,8 +24,9 @@ client = AgentspaceManager(project_id=PROJECT_ID,app_id=AGENTSPACE_APP_ID)
 auth_uri = client.generate_auth_uri(
     base_auth_uri="https://accounts.google.com/o/oauth2/v2/auth",
     client_id=GOOGLE_CLIENT_ID,
-    scopes=["https://www.googleapis.com/auth/userinfo.email",
-            "https://www.googleapis.com/auth/userinfo.profile"
+    scopes=["openid",
+            "https://www.googleapis.com/auth/drive.readonly",
+            "https://www.googleapis.com/auth/drive.metadata",
             ]
 )
 

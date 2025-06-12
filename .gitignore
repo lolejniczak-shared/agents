@@ -15,6 +15,7 @@ adk06b-oauth-demo/.env
 adk-service-04-memorybank/memory_bank_service.py
 adk-deployment-01-agentengine/*.html
 adk-deployment-03-agentspace/.env
+adk-deployment-03-agentspace/agentoauth/.env
 */*.json
 result
 */*.pyc

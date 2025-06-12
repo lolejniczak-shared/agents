@@ -5,5 +5,5 @@ adk deploy cloud_run \
 --app_name="adkdemo" \
 --with_ui \
 --trace_to_cloud \
---adk_version="1.1.1" \
+--adk_version="1.2.1" \
 agent
